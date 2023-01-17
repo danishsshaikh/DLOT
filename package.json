@@ -9,10 +9,23 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~47.0.12",
-    "expo-status-bar": "~1.4.2",
-    "react": "18.1.0",
-    "react-native": "0.70.5"
+    "@expo/ngrok": "^4.1.0",
+    "@expo/webpack-config": "^0.17.0",
+    "docx": "^7.5.0",
+    "expo": "~46.0.9",
+    "expo-checkbox": "~2.2.0",
+    "expo-file-system": "^14.1.0",
+    "expo-sharing": "^10.3.0",
+    "expo-splash-screen": "~0.16.2",
+    "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.6",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-hook-form": "^7.34.2",
+    "react-native": "0.69.6",
+    "react-native-fs": "^2.20.0",
+    "react-native-web": "~0.18.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
