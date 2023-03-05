@@ -14,6 +14,11 @@ import * as Sharing from "expo-sharing";
 import { Document, Packer, Paragraph, HeadingLevel, TextRun } from "docx";
 import CheckBox from "expo-checkbox";
 import * as XLSX from "xlsx";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize,
+} from "react-native-responsive-dimensions";
 
 const DLOT = () => {
   const [timeText, setTime] = useState(null);
@@ -62,6 +67,15 @@ const DLOT = () => {
     }
   };
 
+  const onLongPressTest = (item) => () => {
+    //console.log(index);
+    //console.log(item);
+    let deleteIndex = studentArray.indexOf(item);
+    studentArray.splice(deleteIndex, 1);
+    //console.log("" + deleteIndex + studentArray);
+    //console.log(studentArray);
+  };
+
   const handleSubmitLog = () => {
     setTimeLeft(10);
 
@@ -108,6 +122,15 @@ const DLOT = () => {
     setOpa(100);
     setEditable(true);
   };
+
+  function handleDelete() {
+    setLogs([]);
+    setCurrentStudent(null);
+    setFeedbacks([]);
+    setStudentArray([]);
+    setFeedbackArray(Array.from({ length: 6 }));
+    //console.log(logs);
+  }
 
   const addstudentName = () => {
     if (studentName == "") return;
@@ -298,6 +321,7 @@ const DLOT = () => {
               }
               key={`student-${studentIndex}`}
               onPress={handleChangeStudent(studentIndex)}
+              onLongPress={onLongPressTest(student)}
             >
               <Text
                 style={
@@ -354,6 +378,18 @@ const DLOT = () => {
                 resizeMode="contain"
                 style={{}}
               />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#E66138",
+                borderRadius: responsiveWidth(5),
+                padding: responsiveWidth(3),
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={handleDelete}
+            >
+              <Text style={{ color: "white" }}>Delete</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.logsbutton}>
@@ -417,20 +453,20 @@ const styles = StyleSheet.create({
   },
 
   smallWrapper: {
-    height: 60,
-    width: 240,
-    marginTop: 60,
-    marginLeft: 110,
+    height: responsiveHeight(7),
+    width: responsiveWidth(61),
+    marginTop: responsiveHeight(7),
+    marginLeft: responsiveWidth(28),
     backgroundColor: "#2E3A8C",
-    borderTopLeftRadius: 13,
-    borderTopRightRadius: 13,
+    borderTopLeftRadius: responsiveWidth(5),
+    borderTopRightRadius: responsiveWidth(5),
     alignItems: "center",
     alignContent: "center",
   },
 
   wrapper: {
     alignItems: "center",
-    marginTop: 20,
+    marginTop: responsiveHeight(5),
   },
 
   checkboxgroupWrapper: {
@@ -439,52 +475,49 @@ const styles = StyleSheet.create({
 
   checkboxfirstcolumnWrapper: {
     flexDirection: "row",
-    marginTop: 5,
+    marginTop: responsiveHeight(1),
   },
 
   text: {
     lineHeight: 30,
-    marginLeft: 10,
     color: "white",
-    fontSize: 20,
   },
 
   timeText: {
-    marginTop: 10,
-    fontSize: 30,
+    marginTop: responsiveHeight(1),
+    fontSize: responsiveFontSize(4),
     color: "white",
   },
 
   bigWrapper: {
-    height: 550,
-    width: 350,
-    paddingHorizontal: 25,
+    height: responsiveHeight(70),
+    width: responsiveWidth(89),
     backgroundColor: "#2E3A8C",
-    borderTopLeftRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderTopLeftRadius: responsiveWidth(5),
+    borderBottomLeftRadius: responsiveWidth(5),
+    borderBottomRightRadius: responsiveWidth(5),
     alignItems: "center",
   },
 
   inputWrapper: {
-    marginTop: 20,
-    paddingHorizontal: 10,
+    marginTop: responsiveHeight(2),
+    paddingHorizontal: responsiveHeight(2),
     flexDirection: "row",
   },
 
   inputText: {
-    width: 200,
-    height: 40,
+    width: responsiveWidth(60),
+    height: responsiveHeight(5),
     backgroundColor: "white",
     textAlign: "center",
   },
 
   inputAdd: {
     backgroundColor: "#E66138",
-    width: 60,
-    height: 40,
-    borderTopEndRadius: 20,
-    borderBottomEndRadius: 20,
+    width: responsiveWidth(20),
+    height: responsiveHeight(5),
+    borderTopEndRadius: responsiveWidth(5),
+    borderBottomEndRadius: responsiveWidth(5),
   },
 
   studentInputText: {
@@ -496,22 +529,22 @@ const styles = StyleSheet.create({
   },
 
   listItem: {
-    width: 150,
-    height: 40,
+    width: responsiveWidth(40),
+    height: responsiveHeight(5),
     backgroundColor: "#E66138",
     color: "#fff",
-    borderRadius: 20,
+    borderRadius: responsiveWidth(5),
     marginTop: 2,
     alignSelf: "center",
   },
 
   listItemSelected: {
-    width: 180,
-    height: 40,
+    width: responsiveWidth(45),
+    height: responsiveHeight(6),
     backgroundColor: "#f4f4f4",
     textColor: "#1f1f1f",
     color: "#1f1f1f",
-    borderRadius: 20,
+    borderRadius: responsiveWidth(5),
     marginTop: 2,
     alignSelf: "center",
   },
@@ -519,21 +552,21 @@ const styles = StyleSheet.create({
   listText: {
     fontWeight: "500",
     textAlign: "center",
-    marginTop: 10,
+    marginTop: responsiveHeight(1),
     color: "#fff",
   },
 
   listTextSelected: {
     fontWeight: "500",
     textAlign: "center",
-    marginTop: 10,
+    marginTop: responsiveHeight(1),
     color: "#1f1f1f",
   },
 
   checkboxInput: {
     textAlign: "center",
     color: "white",
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     marginTop: 3,
   },
 
@@ -543,37 +576,37 @@ const styles = StyleSheet.create({
 
   logsbutton: {
     flexDirection: "row",
-    marginTop: 20,
+    marginTop: responsiveHeight(2),
   },
 
   logButton: {
-    marginTop: 5,
-    marginLeft: 10,
+    marginTop: responsiveHeight(0.5),
+    marginLeft: responsiveWidth(1),
   },
   endExcelButton: {
     marginBottom: 10,
-    marginLeft: 10,
+    marginLeft: responsiveWidth(1),
   },
 
   endWordButton: {
     marginBottom: 10,
-    marginLeft: 10,
+    marginLeft: responsiveWidth(1),
   },
 
   imageWrapper: {
     alignItems: "center",
     flexDirection: "row",
     marginTop: 1,
-    padding: 10,
+    padding: responsiveHeight(1),
   },
 
   behaviorsyLogo: {
-    paddingLeft: 30,
-    marginBottom: 30,
+    paddingLeft: responsiveWidth(3),
+    marginBottom: responsiveHeight(3),
   },
   etLogo: {
-    paddingLeft: 20,
-    marginBottom: 30,
+    paddingLeft: responsiveWidth(2),
+    marginBottom: responsiveHeight(3),
   },
 });
 

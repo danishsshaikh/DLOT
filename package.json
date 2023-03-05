@@ -24,6 +24,7 @@
     "react-hook-form": "^7.34.2",
     "react-native": "0.69.6",
     "react-native-fs": "^2.20.0",
+    "react-native-responsive-dimensions": "^3.1.1",
     "react-native-web": "~0.18.7",
     "xlsx": "^0.18.5"
   },
